@@ -68,12 +68,14 @@ public class Student {
 }
 Lombok creates an inner static builder class named as StudentBuilder. This builder class handles the initialization of all fields in Student.
 
-There are also other interesting points to note. Firstly, the Student class has a static builder() method to create anew builder. Then, we have a package-private constructor for Employee thus restricting the object creation. Also, the builder class creates an Employee instance with the build() method.
+There are also other interesting points to note. Firstly, the Student class has a static builder() method to create anew builder. Then, we 
+have a package-private constructor for Employee thus restricting the object creation. Also, the builder class creates an Employee instance with the build() method.
 
 ----------------------------------------------------------------------------------------------------------------------
 3. Use @Builder on Constructor Level
 ----------------------------------------
-When we want to create a builder for specific fields, we should create a constructor with only those fields. Then when we put the @Builder annotation on the constructor, Lombok creates a builder class containing only the constructor parameters.
+When we want to create a builder for specific fields, we should create a constructor with only those fields. Then when we put the @Builder annotation
+on the constructor, Lombok creates a builder class containing only the constructor parameters.
 
 We'll work with the previous Student class:
 
@@ -142,7 +144,8 @@ Lombok again creates the StudentBuilder class. However, the builder now doesn't 
 ------------------------------------------------------------------------------------------------------------------
 4. Use @Builder on Method Level
 --------------------------------
-We can also annotate the methods with @Builder similar to the constructors. When placed on methods, the generated builder class includes fields that correspond to the method parameters.
+We can also annotate the methods with @Builder similar to the constructors. When placed on methods, the generated builder class includes fields that 
+correspond to the method parameters.
 
 public class Student {
 
@@ -224,7 +227,8 @@ public class Student {
 ------------------------------------------------------------------------------------------------------------------
 5. Use @Singular and @Builder for Collection-Valued Fields
 -----------------------------------------------------------
-When we annotate a collection-valued field with @Singular, the builder doesn't generate a setter method. Instead, it generates two adder methods, one for adding a single item and one for adding another collection to the original collection. It also creates a clear method.
+When we annotate a collection-valued field with @Singular, the builder doesn't generate a setter method. Instead, it generates two adder methods,
+one for adding a single item and one for adding another collection to the original collection. It also creates a clear method.
 
 We'll work with the Student class:
 
@@ -236,7 +240,8 @@ public class Student {
     @Singular
     private Set<String> lessons;
 }
-Here, we have the instance field lessons - Set<String>. Note that it is a collection-valued variable and annotated with @Singular. Since we're using @Builder on the class, the generated builder should honor the @Singular annotation:
+Here, we have the instance field lessons - Set<String>. Note that it is a collection-valued variable and annotated with @Singular. Since we're 
+using @Builder on the class, the generated builder should honor the @Singular annotation:
 
 public class Student {
 
@@ -321,7 +326,8 @@ public class Student {
         }
     }
 }
-Similar to previous examples, the builder contains methods for initializing the instance fields of Student. The important part is that we have three lesson related methods now: lesson, lessons, and clearLessons.
+Similar to previous examples, the builder contains methods for initializing the instance fields of Student. The important part is that we have
+three lesson related methods now: lesson, lessons, and clearLessons.
 
 
 -------------------------------------------------------------------------------------------------------------------
@@ -337,7 +343,8 @@ public class Student {
     @Builder.Default
     private String teacher = "Mrs. White";
 }
-The Student class declares the teacher field and initializes it with Mrs. White. As a result, if no value is supplied for teacher during the build phase, the builder will use Mrs. White as the default value.
+The Student class declares the teacher field and initializes it with Mrs. White. As a result, if no value is supplied for teacher during the build
+phase, the builder will use Mrs. White as the default value.
 
 7. Configure @Builder
 Similar to other annotations, Lombok provides configuration properties for @Builder. We must place these properties in the lombok.config file.
@@ -347,7 +354,8 @@ We can use the lombok.builder.flagUsage configuration key to prevent the usage o
 
 # [warning | error] (default: not set)
 lombok.builder.flagUsage = error
-There is no default value for this configuration, so it won't take effect until configured. In our case, we're setting it to error. So if Lombok detects usage of @Builder during compilation, it'll log an error message.
+There is no default value for this configuration, so it won't take effect until configured. In our case, we're setting it to error. So
+if Lombok detects usage of @Builder during compilation, it'll log an error message.
 
 7.2. lombok.singular.useGuava
 When we set lombok.singular.useGuava to true, Lombok uses Guava's immutable builders and types.
@@ -357,7 +365,8 @@ lombok.singular.useGuava = false
 The default value for this configuration is false.
 
 7.3. lombok.singular.auto
-The lombok.singular.auto property controls whether Lombok should automatically find the singular name for the collection-valued field. For example, if we're using a common English plural like lessons, Lombok can infer the singular name as lesson and use it in the builder method names.
+The lombok.singular.auto property controls whether Lombok should automatically find the singular name for the collection-valued field. For example,
+if we're using a common English plural like lessons, Lombok can infer the singular name as lesson and use it in the builder method names.
 
 # [true | false] (default: true)
 lombok.singular.auto = true
