@@ -8,7 +8,7 @@ It is a handy annotation especially when we're dealing with classes that have ma
 
 
 --------------------------------------------------------------------------------------------
-2. Use @Builder on Class Level
+1. Use @Builder on Class Level
 ------------------------------
 
 When we annotate a class with @Builder, Lombok creates a builder for all instance fields in that class. 
@@ -72,7 +72,7 @@ There are also other interesting points to note. Firstly, the Student class has 
 have a package-private constructor for Employee thus restricting the object creation. Also, the builder class creates an Employee instance with the build() method.
 
 ----------------------------------------------------------------------------------------------------------------------
-3. Use @Builder on Constructor Level
+2. Use @Builder on Constructor Level
 ----------------------------------------
 When we want to create a builder for specific fields, we should create a constructor with only those fields. Then when we put the @Builder annotation
 on the constructor, Lombok creates a builder class containing only the constructor parameters.
@@ -142,7 +142,7 @@ public class Student {
 Lombok again creates the StudentBuilder class. However, the builder now doesn't contain the methods for name and age, since these fields aren't included in the constructor. Builder only sets the values for the section and school fields.
 
 ------------------------------------------------------------------------------------------------------------------
-4. Use @Builder on Method Level
+3. Use @Builder on Method Level
 --------------------------------
 We can also annotate the methods with @Builder similar to the constructors. When placed on methods, the generated builder class includes fields that 
 correspond to the method parameters.
@@ -225,7 +225,7 @@ public class Student {
 }
 
 ------------------------------------------------------------------------------------------------------------------
-5. Use @Singular and @Builder for Collection-Valued Fields
+4. Use @Singular and @Builder for Collection-Valued Fields
 -----------------------------------------------------------
 When we annotate a collection-valued field with @Singular, the builder doesn't generate a setter method. Instead, it generates two adder methods,
 one for adding a single item and one for adding another collection to the original collection. It also creates a clear method.
@@ -331,7 +331,7 @@ three lesson related methods now: lesson, lessons, and clearLessons.
 
 
 -------------------------------------------------------------------------------------------------------------------
-6. Default Values for @Builder
+5. Default Values for @Builder
 -----------------------------------
 @Builder.Default allows us to define default values for the annotated fields.
 
